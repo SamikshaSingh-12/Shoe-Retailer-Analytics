@@ -1,0 +1,82 @@
+erDiagram
+    Brands ||--o{ Products : "makes"
+    Categories ||--o{ Products : "classifies"
+    Genders ||--o{ Products : "targets"
+
+    Products ||--o{ Orders : "sold in"
+    DateDim ||--o{ Orders : "dated"
+    Countries ||--o{ Orders : "placed in"
+    Channels ||--o{ Orders : "sold via"
+    PaymentMethods ||--o{ Orders : "paid with"
+    IncomeLevels ||--o{ Orders : "segment of"
+
+    Brands {
+        int brand_id PK
+        varchar brand_name UK
+    }
+
+    Categories {
+        int category_id PK
+        varchar category_name UK
+    }
+
+    Genders {
+        int gender_id PK
+        varchar gender_name UK
+    }
+
+    Channels {
+        int channel_id PK
+        varchar channel_name UK
+    }
+
+    Countries {
+        int country_id PK
+        varchar country_name UK
+    }
+
+    PaymentMethods {
+        int payment_method_id PK
+        varchar method_name UK
+    }
+
+    IncomeLevels {
+        int income_level_id PK
+        varchar level_name UK
+    }
+
+    DateDim {
+        int date_id PK
+        date full_date UK
+        int year
+        int quarter
+        int month
+        varchar month_name
+        int week_of_year
+        int day_of_week
+        boolean is_weekend
+    }
+
+    Products {
+        int product_id PK
+        int brand_id FK
+        varchar model_name
+        int category_id FK
+        int gender_id FK
+    }
+
+    Orders {
+        varchar order_id PK
+        int date_id FK
+        int product_id FK
+        int country_id FK
+        int channel_id FK
+        int payment_method_id FK
+        int income_level_id FK
+        int size
+        varchar color
+        decimal base_price_usd
+        decimal discount_percent
+        int units_sold
+        decimal customer_rating
+    }

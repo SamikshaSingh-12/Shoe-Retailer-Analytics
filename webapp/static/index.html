@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Footwear Retailer Analytics</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1>Global Sports Footwear — Retailer Analytics</h1>
+        <p class="subtitle">
+          Pricing, behavior, and temporal insights across 9 analytic views.
+        </p>
+      </div>
+    </header>
+
+    <nav class="tabs wrap">
+      <button data-tab="pricing" class="active">Pricing</button>
+      <button data-tab="behavior">Behavior</button>
+      <button data-tab="temporal">Temporal</button>
+      <button data-tab="bonus">Bonus</button>
+    </nav>
+
+    <main class="wrap">
+      <!-- PRICING -->
+      <section id="pricing" class="panel active">
+        <div class="card">
+          <h2>Q1 — Discount Depth vs Revenue</h2>
+          <p class="desc">
+            Does deeper discounting drive more total revenue, or erode margin?
+          </p>
+          <div class="chart-wrap"><canvas id="chart-q1"></canvas></div>
+          <details><summary>Data</summary><div id="table-q1" class="tbl"></div></details>
+        </div>
+
+        <div class="card">
+          <h2>Q2 — Brand-Level Price Sensitivity</h2>
+          <p class="desc">
+            Revenue by brand, grouped by discount tier — which brands hold volume at full price?
+          </p>
+          <div class="chart-wrap"><canvas id="chart-q2"></canvas></div>
+          <details><summary>Data</summary><div id="table-q2" class="tbl"></div></details>
+        </div>
+
+        <div class="card">
+          <h2>Q3 — Category Discount Effectiveness</h2>
+          <p class="desc">
+            Which categories to discount aggressively vs hold at full price?
+          </p>
+          <div class="chart-wrap"><canvas id="chart-q3"></canvas></div>
+          <details><summary>Data</summary><div id="table-q3" class="tbl"></div></details>
+        </div>
+
+        <div class="card">
+          <h2>Q4 — Channel Pricing Behavior</h2>
+          <p class="desc">
+            Online vs Retail per discount tier — where does promo pricing pay off?
+          </p>
+          <div class="chart-wrap"><canvas id="chart-q4"></canvas></div>
+          <details><summary>Data</summary><div id="table-q4" class="tbl"></div></details>
+        </div>
+      </section>
+
+      <!-- BEHAVIOR -->
+      <section id="behavior" class="panel">
+        <div class="card">
+          <h2>Q5 — Top Satisfaction Combos</h2>
+          <p class="desc">
+            Top (brand × category × gender × price-band × tier) combos by avg rating.
+          </p>
+          <div class="controls">
+            <label>Limit:
+              <input id="q5-limit" type="number" value="15" min="5" max="100" />
+            </label>
+            <button id="q5-apply">Apply</button>
+          </div>
+          <div class="chart-wrap tall"><canvas id="chart-q5"></canvas></div>
+          <details open><summary>Data</summary><div id="table-q5" class="tbl"></div></details>
+        </div>
+
+        <div class="card">
+          <h2>Q6 — Geography & Demand Concentration</h2>
+          <p class="desc">Revenue per country and income-level mix.</p>
+          <div class="chart-wrap"><canvas id="chart-q6"></canvas></div>
+          <div class="chart-wrap"><canvas id="chart-q6-income"></canvas></div>
+          <details><summary>Data</summary><div id="table-q6" class="tbl"></div></details>
+        </div>
+
+        <div class="card">
+          <h2>Q7 — Size &amp; Color Demand</h2>
+          <p class="desc">Top (size, color) combos by units sold for a chosen category.</p>
+          <div class="controls">
+            <label>Category:
+              <select id="q7-category"></select>
+            </label>
+            <label>Limit:
+              <input id="q7-limit" type="number" value="20" min="5" max="100" />
+            </label>
+            <button id="q7-apply">Apply</button>
+          </div>
+          <div class="chart-wrap tall"><canvas id="chart-q7"></canvas></div>
+          <details><summary>Data</summary><div id="table-q7" class="tbl"></div></details>
+        </div>
+      </section>
+
+      <!-- TEMPORAL -->
+      <section id="temporal" class="panel">
+        <div class="card">
+          <h2>Q8a — Year-over-Year Revenue by Category</h2>
+          <div class="chart-wrap"><canvas id="chart-q8a"></canvas></div>
+          <details><summary>Data</summary><div id="table-q8a" class="tbl"></div></details>
+        </div>
+        <div class="card">
+          <h2>Q8b — Monthly Seasonality by Category</h2>
+          <div class="chart-wrap"><canvas id="chart-q8b"></canvas></div>
+          <details><summary>Data</summary><div id="table-q8b" class="tbl"></div></details>
+        </div>
+      </section>
+
+      <!-- BONUS -->
+      <section id="bonus" class="panel">
+        <div class="card">
+          <h2>Q9 — Rating vs Discount Tier</h2>
+          <p class="desc">
+            Clearance effect vs value perception — does deeper discount raise or lower ratings?
+          </p>
+          <div class="chart-wrap"><canvas id="chart-q9"></canvas></div>
+          <details><summary>Data</summary><div id="table-q9" class="tbl"></div></details>
+        </div>
+      </section>
+
+      <div id="status" class="status"></div>
+    </main>
+
+    <footer class="wrap">
+      <span>Backed by PostgreSQL · FastAPI · Chart.js</span>
+      <span id="health" class="health">checking…</span>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
